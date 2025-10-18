@@ -28,6 +28,12 @@ public class Player : MonoBehaviour
     private float playerHeight;
     private float raycastDistance;
 
+
+    // Narrative 
+    bool canMove;
+
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
