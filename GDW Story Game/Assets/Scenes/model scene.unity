@@ -417,13 +417,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8213983013496453312}
-        m_TargetAssemblyTypeName: Narratiion, Assembly-CSharp
-        m_MethodName: Option3Event
-        m_Mode: 1
+      - m_Target: {fileID: 8213983013496453314}
+        m_TargetAssemblyTypeName: StateManager, Assembly-CSharp
+        m_MethodName: PickDialogueOption
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1301673778}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -661,13 +661,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8213983013496453312}
-        m_TargetAssemblyTypeName: Narratiion, Assembly-CSharp
-        m_MethodName: Option1Event
-        m_Mode: 1
+      - m_Target: {fileID: 8213983013496453314}
+        m_TargetAssemblyTypeName: StateManager, Assembly-CSharp
+        m_MethodName: PickDialogueOption
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 925708630}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1169,13 +1169,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8213983013496453312}
-        m_TargetAssemblyTypeName: Narratiion, Assembly-CSharp
-        m_MethodName: Option2Event
-        m_Mode: 1
+      - m_Target: {fileID: 8213983013496453314}
+        m_TargetAssemblyTypeName: StateManager, Assembly-CSharp
+        m_MethodName: PickDialogueOption
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1750655760}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1283,7 +1283,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1700466074
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2069,7 +2069,8 @@ GameObject:
   - component: {fileID: 3237375161091140828}
   - component: {fileID: 6971986376432233313}
   - component: {fileID: 971861816839420797}
-  - component: {fileID: 8213983013496453312}
+  - component: {fileID: 8213983013496453313}
+  - component: {fileID: 8213983013496453314}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -3843,7 +3844,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8213983013496453312
+--- !u!114 &8213983013496453313
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3852,12 +3853,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 190480090106610797}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af200105abed48842a471d4c864fd56b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4dd0f016ca74fa14da71fa3ca6adb31d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Narratiion
-  player: {fileID: 3237375161091140828}
-  text: {fileID: 1870658782}
-  dialogues: {fileID: 1700466073}
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
+  dialogueBox: {fileID: 1700466073}
   dialogueText: {fileID: 135103293356658814}
   buttons:
   - {fileID: 1253361490}
@@ -3867,6 +3866,21 @@ MonoBehaviour:
   - {fileID: 925708630}
   - {fileID: 1750655760}
   - {fileID: 1301673778}
+  player: {fileID: 3237375161091140828}
+--- !u!114 &8213983013496453314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190480090106610797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 658f652fea71c90438c0cf4c862c5dd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StateManager
+  dialogueManager: {fileID: 8213983013496453313}
+  prompt: {fileID: 1870658782}
 --- !u!1 &8445914067072812165
 GameObject:
   m_ObjectHideFlags: 0
