@@ -27,15 +27,28 @@ public class Player : MonoBehaviour
     private float groundCheckDelay = 0.3f;
     private float playerHeight;
     private float raycastDistance;
-
-
+    
     // Narrative 
-    bool canMove;
+    private bool canMove;
 
-
+    public void LockPlayer()
+    {
+        canMove = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+    
+    public void FreePlayer()
+    {
+        canMove = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 
     void Start()
     {
+        
+        
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         
@@ -45,8 +58,10 @@ public class Player : MonoBehaviour
         raycastDistance = (playerHeight / 2) + 0.2f;
 
         // Hides the mouse
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        // Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
+        
+        LockPlayer();
     }
 
     void Update()
@@ -54,9 +69,13 @@ public class Player : MonoBehaviour
         moveHorizontal = Input.GetAxisRaw("Horizontal");
         moveForward = Input.GetAxisRaw("Vertical");
 
-        RotateCamera();
+        if (canMove == true)
+        {
+            RotateCamera();
+        }
+            
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded && canMove)
         {
             Jump();
         }
@@ -76,8 +95,12 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        MovePlayer();
-        ApplyJumpPhysics();
+        if (canMove == true)
+        {
+            MovePlayer();
+            ApplyJumpPhysics();;
+        }
+        
     }
 
     void MovePlayer()
@@ -93,7 +116,7 @@ public class Player : MonoBehaviour
         rb.linearVelocity = velocity;
 
         // If we aren't moving and are on the ground, stop velocity so we don't slide
-        if (isGrounded && moveHorizontal == 0 && moveForward == 0)
+        if (isGrounded && moveHorizontal == 0 && moveForward == 0 && canMove)
         {
             rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
         }
