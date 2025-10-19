@@ -626,7 +626,7 @@ public class StateManager : MonoBehaviour
         if (other.CompareTag("Friend") && state == "Friend")
         {
             prompt.gameObject.SetActive(true);
-            prompt.text = "Press E to talk to friend";
+            prompt.text = "Press E to talk";
         }
     }
 
