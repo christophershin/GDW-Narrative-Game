@@ -67,3 +67,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908ddff3f01c8fa469c85a405e2646e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameState
+  ImageCanvas: {fileID: 0}
+  player: {fileID: 0}
+  dreamImage: {fileID: 0}
+  textCanvas: {fileID: 0}
+  BlackBar: {fileID: 0}
+  timeBetweenText: 0.05
+  newDict:
+    thisDictItems:
+    - name: Dream text
+      text: YOOOOO here is some text. Let's GOOOOOO

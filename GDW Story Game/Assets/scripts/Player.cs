@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
 
 
     // Narrative 
-    bool canMove;
+    public bool canMove;
 
 
 
@@ -51,25 +51,30 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        moveHorizontal = Input.GetAxisRaw("Horizontal");
-        moveForward = Input.GetAxisRaw("Vertical");
 
-        RotateCamera();
+        if (canMove)
+        {
+            moveHorizontal = Input.GetAxisRaw("Horizontal");
+            moveForward = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            Jump();
-        }
 
-        // Checking when we're on the ground and keeping track of our ground check delay
-        if (!isGrounded && groundCheckTimer <= 0f)
-        {
-            Vector3 rayOrigin = transform.position + Vector3.up * 0.1f;
-            isGrounded = Physics.Raycast(rayOrigin, Vector3.down, raycastDistance, groundLayer);
-        }
-        else
-        {
-            groundCheckTimer -= Time.deltaTime;
+            RotateCamera();
+
+            if (Input.GetButtonDown("Jump") && isGrounded)
+            {
+                Jump();
+            }
+
+            // Checking when we're on the ground and keeping track of our ground check delay
+            if (!isGrounded && groundCheckTimer <= 0f)
+            {
+                Vector3 rayOrigin = transform.position + Vector3.up * 0.1f;
+                isGrounded = Physics.Raycast(rayOrigin, Vector3.down, raycastDistance, groundLayer);
+            }
+            else
+            {
+                groundCheckTimer -= Time.deltaTime;
+            }
         }
 
     }

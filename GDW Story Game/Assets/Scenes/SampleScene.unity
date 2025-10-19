@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &226268608 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7178422993038846370, guid: 2b0227d6bcb92184281af29ea22bd0e0, type: 3}
+  m_PrefabInstance: {fileID: 5268112927017485274}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,6 +490,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f65da0ed4dad27641bd2b6d228f5d6b9, type: 3}
+--- !u!114 &1383291567 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 135103294289712591, guid: 2b0227d6bcb92184281af29ea22bd0e0, type: 3}
+  m_PrefabInstance: {fileID: 5268112927017485274}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &30530142287364677
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -534,37 +550,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6316706704085429113, guid: 16c08d108ffd8c141818e4b48cc12e8b, type: 3}
-      propertyPath: img
-      value: 
-      objectReference: {fileID: 2800000, guid: 74e544aa5ce5b304abcc51af67f05d87, type: 3}
-    - target: {fileID: 6316706704085429113, guid: 16c08d108ffd8c141818e4b48cc12e8b, type: 3}
-      propertyPath: image
-      value: 
-      objectReference: {fileID: 21300000, guid: 74e544aa5ce5b304abcc51af67f05d87, type: 3}
-    - target: {fileID: 6316706704085429113, guid: 16c08d108ffd8c141818e4b48cc12e8b, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 663924233}
     - target: {fileID: 6316706704085429113, guid: 16c08d108ffd8c141818e4b48cc12e8b, type: 3}
-      propertyPath: UI_image
+      propertyPath: BlackBar
       value: 
-      objectReference: {fileID: 5268112927017485275}
+      objectReference: {fileID: 226268608}
     - target: {fileID: 6316706704085429113, guid: 16c08d108ffd8c141818e4b48cc12e8b, type: 3}
-      propertyPath: dreamImage
+      propertyPath: textCanvas
       value: 
-      objectReference: {fileID: 21300000, guid: 74e544aa5ce5b304abcc51af67f05d87, type: 3}
+      objectReference: {fileID: 1383291567}
     - target: {fileID: 6316706704085429113, guid: 16c08d108ffd8c141818e4b48cc12e8b, type: 3}
       propertyPath: ImageCanvas
       value: 
       objectReference: {fileID: 5268112927017485275}
-    - target: {fileID: 6316706704085429113, guid: 16c08d108ffd8c141818e4b48cc12e8b, type: 3}
-      propertyPath: text.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6316706704085429113, guid: 16c08d108ffd8c141818e4b48cc12e8b, type: 3}
-      propertyPath: 'text.Array.data[0]'
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6590086664584725911, guid: 16c08d108ffd8c141818e4b48cc12e8b, type: 3}
       propertyPath: m_Name
       value: GameManager
