@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 /*
@@ -32,6 +33,8 @@ public class Player : MonoBehaviour
     // Narrative 
     public bool canMove;
 
+    public List<AudioClip> sounds;
+    private AudioSource soundPlayer;
 
 
     void Start()
@@ -47,6 +50,9 @@ public class Player : MonoBehaviour
         // Hides the mouse
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        soundPlayer = GetComponent<AudioSource>();
+        
     }
 
     void Update()

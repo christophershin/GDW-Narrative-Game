@@ -30,6 +30,8 @@ public class GameState : MonoBehaviour
     public TextMeshProUGUI textCanvas;
     public GameObject BlackBar;
     public float timeBetweenText = 0.05f;
+
+
     // the dialogue in the game
     Dictionary<string, string> dialogue;
 
