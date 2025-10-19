@@ -183,19 +183,31 @@ public class StateManager : MonoBehaviour
             
             // Stage 2
             case "NO WAIT!" or "Sorry...":
-                
-                // Dialogue
-                dialogue = "He's gone... so what should I do now...";
+
+                if (weapon == "none")
+                {
+                    // Dialogue
+                    dialogue = "He's gone... so what should I do now...";
         
-                // Options
-                option1 = "Maybe it was just a dream";
-                option2 = "Lets tell Garry";
+                    // Options
+                    option1 = "Maybe it was just a dream";
+                    option2 = "Lets tell Garry";
+                }
+                else
+                {
+                    // Dialogue
+                    dialogue = "Bruh he didn't even listen to me...";
+        
+                    // Options
+                    option1 = "At least Garry listened";
+                    option2 = ""; 
+                }
                 option3 = "";
                 
                 break;
             
             // Stage 3
-            case "Maybe it was just a dream":
+            case "Maybe it was just a dream" or "At least Garry listened":
                 
                 // Dialogue
                 dialogue = "Lets go to sleep now...";
@@ -523,7 +535,7 @@ public class StateManager : MonoBehaviour
                 break;
             
             // Questioning
-            case "So how the hell did you get weapons in here": 
+            case "So how the hell did you get weapons in here" or "So how exactly did you get weapons in here": 
                 // Dialogue
                 dialogue = "I have my ways ;)";
         
@@ -540,16 +552,50 @@ public class StateManager : MonoBehaviour
         
                 // Options
                 option1 = "Good night"; //
-                option2 = ""; //
+
+                if (guardSupport == true)
+                {
+                    option2 = "I should probably tell the guards about the dream";//
+                }
+                else
+                {
+                    option2 = ""; 
+                }
+                
                 option3 = "";
                 
                 break;
             
+            case "I should probably tell the guards about the dream":
+                // Dialogue
+                dialogue = "They will probably call you crazy but tell them if you want";
+                
+                // Options
+                option1 = "You're right. Gotta go sleep now";//
+                option2 = "Nothing harmful in trying"; //
+                option3 = "";
+                
+                break;
+            
+            case "You're right. Gotta go sleep now":
+                // Dialogue
+                dialogue = "Good night man";
+                
+                // Options
+                option1 = "Good night";//
+                option2 = "";
+                option3 = "";
+                break;
+            
             // END
+            case "Nothing harmful in trying":
+                // Consequences
+                state = "Guard";
+                EndDialogue();
+                break;
             case "..." or "Good night" or "Good night man":
                 state = "Sleep";
                 EndDialogue();
-                
                 break;
         }
     }
@@ -586,7 +632,12 @@ public class StateManager : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Door") ||  other.CompareTag("Friend"))
+        if (other.CompareTag("Door") && state == "Guard")
+        {
+            prompt.gameObject.SetActive(false);
+        }
+        
+        if (other.CompareTag("Friend")  && state == "Friend")
         {
             prompt.gameObject.SetActive(false);
         }
