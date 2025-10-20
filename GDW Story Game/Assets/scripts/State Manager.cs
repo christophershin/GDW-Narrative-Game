@@ -1,5 +1,7 @@
 using System;
 using TMPro;
+using System.Collections;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class StateManager : MonoBehaviour
@@ -18,6 +20,7 @@ public class StateManager : MonoBehaviour
     
     // Options
     private string dialogue, option1,  option2, option3;
+
     void Start()
     {
         StartIntro();
@@ -65,9 +68,12 @@ public class StateManager : MonoBehaviour
     {
         // Activate Box
         StartDialogue();
-        
+
         // Dialogue
         dialogue = "What was that?";
+        
+
+        
         
         // Options
         option1 = "It was probably just a dream";
@@ -642,4 +648,23 @@ public class StateManager : MonoBehaviour
             prompt.gameObject.SetActive(false);
         }
     }
+
+    IEnumerator DrawText(string drawnText)
+    {
+        
+
+        for (int i = 0; i < drawnText.Length; i++)
+        {
+
+            dialogue += drawnText[i];
+
+            yield return new WaitForSeconds(0.05f);
+
+
+        }
+
+    }
+
+
+
 }

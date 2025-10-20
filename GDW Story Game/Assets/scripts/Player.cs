@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 /*
@@ -30,6 +31,9 @@ public class Player : MonoBehaviour
     
     // Narrative 
     private bool canMove;
+    public List<AudioClip> playerSounds;
+    private AudioSource SoundPlayer;
+
 
     public void LockPlayer()
     {
@@ -47,8 +51,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        
-        
+
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         
@@ -56,6 +59,8 @@ public class Player : MonoBehaviour
         // Set the raycast to be slightly beneath the player's feet
         playerHeight = GetComponent<CapsuleCollider>().height * transform.localScale.y;
         raycastDistance = (playerHeight / 2) + 0.2f;
+
+        SoundPlayer = GetComponent<AudioSource>();
 
         // Hides the mouse
         // Cursor.lockState = CursorLockMode.Locked;
@@ -72,8 +77,8 @@ public class Player : MonoBehaviour
         if (canMove == true)
         {
             RotateCamera();
-        }
             
+        }
 
         if (Input.GetButtonDown("Jump") && isGrounded && canMove)
         {
@@ -98,9 +103,11 @@ public class Player : MonoBehaviour
         if (canMove == true)
         {
             MovePlayer();
-            ApplyJumpPhysics();;
+            ApplyJumpPhysics();
+            
         }
-        
+
+
     }
 
     void MovePlayer()
@@ -119,6 +126,7 @@ public class Player : MonoBehaviour
         if (isGrounded && moveHorizontal == 0 && moveForward == 0 && canMove)
         {
             rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+
         }
     }
 
@@ -153,4 +161,5 @@ public class Player : MonoBehaviour
             rb.linearVelocity += Vector3.up * Physics.gravity.y * ascendMultiplier * Time.fixedDeltaTime;
         }
     }
+
 }
