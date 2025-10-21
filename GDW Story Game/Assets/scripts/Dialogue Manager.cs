@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -19,8 +20,10 @@ public class DialogueManager : MonoBehaviour
     private StateManager stateManager;
     
     // Audio
+    public List<AudioClip> dialogueSounds;
     private AudioSource audioSource;
     private string charTalking;
+    
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -30,6 +33,19 @@ public class DialogueManager : MonoBehaviour
     void Update()
     {
         charTalking = stateManager.personTalking;
+
+        switch (charTalking)
+        {
+            case "Player":
+                audioSource.clip = dialogueSounds[0];  
+                break;
+            case "Friend":
+                audioSource.clip = dialogueSounds[1];  
+                break;
+            case "Guard":
+                audioSource.clip = dialogueSounds[2];  
+                break;
+        }
     }
 
     public void LockPlayer()

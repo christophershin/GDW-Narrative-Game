@@ -14,6 +14,7 @@ public class StateManager : MonoBehaviour
     // Data
     private string state = "Intro";
     private string dialogueOption = "";
+    public string personTalking = "";
     
     // Items
     private bool guardSupport = true;
@@ -34,6 +35,7 @@ public class StateManager : MonoBehaviour
     void Start()
     {
         StartIntro();
+        personTalking = "Player";
         PlayerPrefs.SetString("Weapon", "none");
         PlayerPrefs.SetString("GuardSupport", "true");
         PlayerPrefs.Save();
@@ -47,9 +49,11 @@ public class StateManager : MonoBehaviour
             switch (state)
             {
                 case "Guard":
+                    personTalking = "Guard";
                     StartCoroutine(StartGuard());
                     break;
                 case "Friend":
+                    personTalking = "Friend";
                     StartFriend();
                     break;
                 case "Sleep":
@@ -266,6 +270,8 @@ public class StateManager : MonoBehaviour
             // Stage 2
             case "NO WAIT!" or "Sorry...":
 
+                personTalking = "Player";
+                
                 if (weapon == "none")
                 {
                     // Dialogue
