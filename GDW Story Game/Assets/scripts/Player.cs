@@ -29,12 +29,12 @@ public class Player : MonoBehaviour
     private float playerHeight;
     private float raycastDistance;
     
-    // Narrative   
-    private bool canMove;  
-    public List<AudioClip> playerSounds;  
-    private AudioSource SoundPlayer;  
-    private float stepCounter = 0;  
-    public float stepInterval = 0.2f;  
+    // Narrative 
+    private bool canMove;
+    public List<AudioClip> playerSounds;
+    private AudioSource SoundPlayer;
+    private float stepCounter = 0;
+    public float stepInterval = 0.2f;
 
 
     public void LockPlayer()
@@ -53,43 +53,51 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        
 
         // Set the raycast to be slightly beneath the player's feet
         playerHeight = GetComponent<CapsuleCollider>().height * transform.localScale.y;
         raycastDistance = (playerHeight / 2) + 0.2f;
 
         SoundPlayer = GetComponent<AudioSource>();
+
+        // Hides the mouse
+        // Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
         
         LockPlayer();
     }
 
-    void Update()  
-    {        moveHorizontal = Input.GetAxisRaw("Horizontal");  
-        moveForward = Input.GetAxisRaw("Vertical");  
-  
-        if (canMove == true)  
-        {            
-            RotateCamera();  
-        }  
-  
-        if (Input.GetButtonDown("Jump") && isGrounded && canMove)  
-        {            
-            Jump();  
-        }  
-        
-        
-        // Checking when we're on the ground and keeping track of our ground check delay  
-        if (!isGrounded && groundCheckTimer <= 0f)  
+    void Update()
+    {
+        moveHorizontal = Input.GetAxisRaw("Horizontal");
+        moveForward = Input.GetAxisRaw("Vertical");
+
+        if (canMove == true)
         {
-            Vector3 rayOrigin = transform.position + Vector3.up * 0.1f;  
-            isGrounded = Physics.Raycast(rayOrigin, Vector3.down, raycastDistance, groundLayer);  
+            RotateCamera();
+            
         }
-        else  
-        {  
-            groundCheckTimer -= Time.deltaTime;  
-        }  
+
+        if (Input.GetButtonDown("Jump") && isGrounded && canMove)
+        {
+            Jump();
+        }
+
+        // Checking when we're on the ground and keeping track of our ground check delay
+        if (!isGrounded && groundCheckTimer <= 0f)
+        {
+            Vector3 rayOrigin = transform.position + Vector3.up * 0.1f;
+            isGrounded = Physics.Raycast(rayOrigin, Vector3.down, raycastDistance, groundLayer);
+        }
+        else
+        {
+            groundCheckTimer -= Time.deltaTime;
+        }
+
     }
 
     void FixedUpdate()
@@ -98,11 +106,16 @@ public class Player : MonoBehaviour
         {
             MovePlayer();
             ApplyJumpPhysics();
+            
         }
+
+
     }
 
     void MovePlayer()
     {
+
+        stepCounter -= Time.deltaTime;
 
         Vector3 movement = (transform.right * moveHorizontal + transform.forward * moveForward).normalized;
         Vector3 targetVelocity = movement * MoveSpeed;
@@ -112,28 +125,30 @@ public class Player : MonoBehaviour
         velocity.x = targetVelocity.x;
         velocity.z = targetVelocity.z;
         rb.linearVelocity = velocity;
+
+
+        if(isGrounded && canMove && (moveHorizontal != 0 || moveForward != 0))
+        {
+            if (stepCounter <= 0)
+            {
+                Debug.Log("move");
+                SoundPlayer.clip = playerSounds[0];
+                SoundPlayer.pitch = Random.Range(0.9f, 1.1f);
+                SoundPlayer.Play();
+
+                stepCounter = stepInterval;
+            }
+        }
+
         
-        // Sound
-        if(isGrounded && canMove && (moveHorizontal != 0 || moveForward != 0))  
-        {            
-            if (stepCounter <= 0)  
-            {                
-                Debug.Log("move");  
-                SoundPlayer.clip = playerSounds[0];  
-                SoundPlayer.pitch = Random.Range(0.9f, 1.1f);  
-                SoundPlayer.Play();  
-  
-                stepCounter = stepInterval;  
-            }        
-        } 
-        
-        
+
         // If we aren't moving and are on the ground, stop velocity so we don't slide
         if (isGrounded && moveHorizontal == 0 && moveForward == 0 && canMove)
         {
             rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
-
+            //SoundPlayer.Stop();
         }
+
     }
 
     void RotateCamera()
