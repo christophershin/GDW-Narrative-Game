@@ -127,13 +127,13 @@ public class Player : MonoBehaviour
         rb.linearVelocity = velocity;
 
 
-        if(isGrounded && canMove && (moveHorizontal != 0 || moveForward != 0))
+        if(isGrounded && (moveHorizontal != 0 || moveForward != 0))
         {
             if (stepCounter <= 0)
             {
                 Debug.Log("move");
                 SoundPlayer.clip = playerSounds[0];
-                SoundPlayer.pitch = Random.Range(0.9f, 1.1f);
+                //SoundPlayer.pitch = Random.Range(0.9f, 1.1f);
                 SoundPlayer.Play();
 
                 stepCounter = stepInterval;

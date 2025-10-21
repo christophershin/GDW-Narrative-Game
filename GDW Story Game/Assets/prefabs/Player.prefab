@@ -704,7 +704,7 @@ MonoBehaviour:
     m_Bits: 64
   playerSounds:
   - {fileID: 8300000, guid: 6207ba5471bb60e4fb5083549e63cb49, type: 3}
-  stepInterval: 0.2
+  stepInterval: 0.7
 --- !u!136 &790690169574765174
 CapsuleCollider:
   m_ObjectHideFlags: 0
