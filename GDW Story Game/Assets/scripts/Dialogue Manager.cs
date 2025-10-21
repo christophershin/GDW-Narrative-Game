@@ -90,7 +90,7 @@ public class DialogueManager : MonoBehaviour
                 dialogueText.text += c;
                 audioSource.Play();
 
-                yield return new WaitForSeconds(0.025f);
+                yield return new WaitForSeconds(0.05f);
             }
             
             if (option3 != "")

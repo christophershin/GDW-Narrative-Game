@@ -5014,7 +5014,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   playerSounds:
-  - {fileID: 8300000, guid: 3598f77e22e6d044dbfe184d33c3aaf8, type: 3}
+  - {fileID: 8300000, guid: 6207ba5471bb60e4fb5083549e63cb49, type: 3}
   stepInterval: 0.2
 --- !u!33 &3379056202003724105
 MeshFilter:
@@ -6738,7 +6738,7 @@ MonoBehaviour:
   - {fileID: 1301673778}
   player: {fileID: 3237375161091140828}
   dialogueSounds:
-  - {fileID: 8300000, guid: 8e578943dab35c34caf3874a953b0a3f, type: 3}
+  - {fileID: 8300000, guid: 0fe2e760da87fe246a524d1b937cfe9d, type: 3}
   - {fileID: 8300000, guid: 929041453a345b347b4798d53866a956, type: 3}
   - {fileID: 8300000, guid: 1e10def8c88b2874fb3ef03ead3ba68c, type: 3}
 --- !u!114 &8213983013496453314
