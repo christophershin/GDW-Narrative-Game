@@ -410,7 +410,7 @@ public class StateManager : MonoBehaviour
                 dialogue = "It does sound scary. Now tell me, what did he look like?";
         
                 // Options
-                option1 = "I can't tell. He was wearing a mask.";//
+                option1 = "He was wearing a mask.";//
                 option2 = "";
                 option3 = "";
                 
@@ -422,28 +422,28 @@ public class StateManager : MonoBehaviour
                 dialogue = "Hmm....";
         
                 // Options
-                option1 = "And the mask looked cheap too";//
+                option1 = "A super cheap looking mask";//
                 option2 = "He then hit me with a crowbar, and I woke up panting.";
                 option3 = "";
                 
                 break;
             
             // Stage 6
-            case "And that crazy guy was laughing too.":
+            case "A super cheap looking mask":
                 // Dialogue
                 dialogue = "This sounds funny rather than scary ngl...";
         
                 // Options
                 option1 = "What the hell man?";//
-                option2 = "Bruh...";//
+                option2 = "You're right";//
                 option3 = "";
                 
                 break;
             
             // Stage 7
-            case "What the hell man?" or "Bruh...":
+            case "What the hell man?" or "You're right":
                 // Dialogue
-                dialogue = "*Still Laughing* Sorry man, you can continue";
+                dialogue = "*Still Laughing* Sorry dude, you can continue";
         
                 // Options
                 option1 = "...."; // four dots not 3

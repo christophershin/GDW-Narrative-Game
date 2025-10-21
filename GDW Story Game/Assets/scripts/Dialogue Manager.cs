@@ -14,14 +14,22 @@ public class DialogueManager : MonoBehaviour
     
     // Player
     [SerializeField] private Player player;
+    
+    // State Manager
+    private StateManager stateManager;
+    
+    // Audio
+    private AudioSource audioSource;
+    private string charTalking;
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
+        stateManager = GetComponent<StateManager>();
     }
     
     void Update()
     {
-        
+        charTalking = stateManager.personTalking;
     }
 
     public void LockPlayer()
@@ -57,10 +65,15 @@ public class DialogueManager : MonoBehaviour
         buttons[1].SetActive(false);
         buttons[2].SetActive(false);
         
+        dialogueText.text = "";
         
-        dialogueText.text = dialogue;
+        foreach (char c in dialogue)
+        {
+            dialogueText.text += c;
+            // Source.Play();
 
-        yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(0.025f);
+        }
 
         if (option3 != "")
         {
