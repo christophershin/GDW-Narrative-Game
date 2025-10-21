@@ -704,6 +704,7 @@ MonoBehaviour:
     m_Bits: 64
   playerSounds:
   - {fileID: 8300000, guid: 558b14cb72ad92b4b88746321ab3bc81, type: 3}
+  - {fileID: 8300000, guid: 558b14cb72ad92b4b88746321ab3bc81, type: 3}
   stepInterval: 0.7
 --- !u!136 &790690169574765174
 CapsuleCollider:
@@ -778,10 +779,12 @@ MonoBehaviour:
   - {fileID: 4572115338876096251}
   - {fileID: 239943325467698530}
   player: {fileID: 8694408409276494570}
+  stateManager: {fileID: 0}
   dialogueSounds:
   - {fileID: 8300000, guid: 0fe2e760da87fe246a524d1b937cfe9d, type: 3}
   - {fileID: 8300000, guid: 929041453a345b347b4798d53866a956, type: 3}
   - {fileID: 8300000, guid: 1e10def8c88b2874fb3ef03ead3ba68c, type: 3}
+  audioSource: {fileID: 0}
 --- !u!114 &4031596737581285090
 MonoBehaviour:
   m_ObjectHideFlags: 0

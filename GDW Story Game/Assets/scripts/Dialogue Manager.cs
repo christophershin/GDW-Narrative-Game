@@ -34,18 +34,22 @@ public class DialogueManager : MonoBehaviour
     {
         charTalking = stateManager.personTalking;
 
-        switch (charTalking)
+        if(dialogueBox.activeSelf == true)
         {
-            case "Player":
-                audioSource.clip = dialogueSounds[0];  
-                break;
-            case "Friend":
-                audioSource.clip = dialogueSounds[1];  
-                break;
-            case "Guard":
-                audioSource.clip = dialogueSounds[2];  
-                break;
+            switch (charTalking)
+            {
+                case "Player":
+                    audioSource.clip = dialogueSounds[0];
+                    break;
+                case "Friend":
+                    audioSource.clip = dialogueSounds[1];
+                    break;
+                case "Guard":
+                    audioSource.clip = dialogueSounds[2];
+                    break;
+            }
         }
+
     }
 
     public void LockPlayer()

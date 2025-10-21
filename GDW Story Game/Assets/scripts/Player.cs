@@ -132,7 +132,7 @@ public class Player : MonoBehaviour
             if (stepCounter <= 0)
             {
                 Debug.Log("move");
-                SoundPlayer.clip = playerSounds[0];
+                SoundPlayer.clip = playerSounds[1];
                 SoundPlayer.pitch = Random.Range(0.9f, 1.1f);
                 SoundPlayer.Play();
 
