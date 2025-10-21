@@ -417,13 +417,13 @@ public class StateManager : MonoBehaviour
                 break;
             
             // Stage 5
-            case "I can't tell. He was wearing a mask.":
+            case "He was wearing a mask.":
                 // Dialogue
                 dialogue = "Hmm....";
         
                 // Options
-                option1 = "And that crazy guy was laughing too.";//
-                option2 = "";
+                option1 = "And the mask looked cheap too";//
+                option2 = "He then hit me with a crowbar, and I woke up panting.";
                 option3 = "";
                 
                 break;
@@ -431,7 +431,7 @@ public class StateManager : MonoBehaviour
             // Stage 6
             case "And that crazy guy was laughing too.":
                 // Dialogue
-                dialogue = "*Laughing* This sounds mad funny im not gonna lie";
+                dialogue = "This sounds funny rather than scary ngl...";
         
                 // Options
                 option1 = "What the hell man?";//
@@ -465,7 +465,7 @@ public class StateManager : MonoBehaviour
                 break;
             
             // Stage 9
-            case "He hit me with a crowbar, and I woke up panting.": 
+            case "He hit me with a crowbar, and I woke up panting." or "He then hit me with a crowbar, and I woke up panting.": 
                 // Dialogue
                 dialogue = "Damn... tell you what. If you're still scared, I can offer you some defense measures.";
         
@@ -719,7 +719,7 @@ public class StateManager : MonoBehaviour
     
     private void SetDialogue()
     {
-        dialogueManager.SetDialoguePath(dialogue, option1, option2, option3);
+        StartCoroutine(dialogueManager.SetDialoguePath(dialogue, option1, option2, option3));
     }
 
     private void OnTriggerEnter(Collider other)

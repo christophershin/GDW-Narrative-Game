@@ -19,7 +19,7 @@ public class animtest : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         
-        anim.speed = .8f;
+        anim.speed = 1f;
     }
 
     // Update is called once per frame
@@ -30,7 +30,7 @@ public class animtest : MonoBehaviour
             transform.position = Vector3.MoveTowards(
                 transform.position,
                 trs.transform.position,
-                3.5f * Time.deltaTime
+                10f * Time.deltaTime
             );;
         }
         else

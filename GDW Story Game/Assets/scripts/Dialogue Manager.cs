@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -50,9 +51,16 @@ public class DialogueManager : MonoBehaviour
         dialogueBox.SetActive(false);
     }
 
-    public void SetDialoguePath(string dialogue, string option1, string option2,  string option3)
+    public IEnumerator SetDialoguePath(string dialogue, string option1, string option2,  string option3)
     {
+        buttons[0].SetActive(false);
+        buttons[1].SetActive(false);
+        buttons[2].SetActive(false);
+        
+        
         dialogueText.text = dialogue;
+
+        yield return new WaitForSeconds(2);
 
         if (option3 != "")
         {

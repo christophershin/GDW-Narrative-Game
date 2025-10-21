@@ -172,6 +172,6 @@ public class SleepManager : MonoBehaviour
     
     private void SetDialogue()
     {
-        dialogueManager.SetDialoguePath(dialogue, option1, option2, option3);
+        StartCoroutine(dialogueManager.SetDialoguePath(dialogue, option1, option2, option3));
     }
 }
