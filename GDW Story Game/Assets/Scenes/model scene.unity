@@ -2972,7 +2972,7 @@ PrefabInstance:
     - target: {fileID: 4031596737581285090, guid: 2b0227d6bcb92184281af29ea22bd0e0, type: 3}
       propertyPath: dialogueManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3469287838354380997}
     - target: {fileID: 7114943376061176780, guid: 2b0227d6bcb92184281af29ea22bd0e0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.3
@@ -3149,11 +3149,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!82 &707782029970294759 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 982929999041713880, guid: 2b0227d6bcb92184281af29ea22bd0e0, type: 3}
-  m_PrefabInstance: {fileID: 321617741662130495}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &802784218175045218
 Transform:
   m_ObjectHideFlags: 0
@@ -3928,7 +3923,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0fe2e760da87fe246a524d1b937cfe9d, type: 3}
   - {fileID: 8300000, guid: 929041453a345b347b4798d53866a956, type: 3}
   - {fileID: 8300000, guid: 1e10def8c88b2874fb3ef03ead3ba68c, type: 3}
-  audioSource: {fileID: 707782029970294759}
+  audioSource: {fileID: 8997668429484008406}
 --- !u!1 &3473061592804809913 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3766230570335653254, guid: 2b0227d6bcb92184281af29ea22bd0e0, type: 3}
@@ -5474,6 +5469,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cebff7cefbb47ae4c847b15337c358e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+--- !u!82 &8997668429484008406 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2068715183435182065, guid: 2b0227d6bcb92184281af29ea22bd0e0, type: 3}
+  m_PrefabInstance: {fileID: 321617741662130495}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &9086395245348061197
 GameObject:
   m_ObjectHideFlags: 0

@@ -77,9 +77,6 @@ public class DialogueManager : MonoBehaviour
 
     public IEnumerator SetDialoguePath(string dialogue, string option1, string option2,  string option3)
     {
-        
-        
-        
         buttons[0].SetActive(false);
         buttons[1].SetActive(false);
         buttons[2].SetActive(false);
@@ -93,7 +90,7 @@ public class DialogueManager : MonoBehaviour
                 dialogueText.text += c;
                 audioSource.Play();
 
-                yield return new WaitForSeconds(0.05f);
+                yield return new WaitForSeconds(0.03f);
             }
             
             if (option3 != "")
