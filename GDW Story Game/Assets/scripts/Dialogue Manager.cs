@@ -1,6 +1,8 @@
 using TMPro;
 using UnityEngine;
 using System.Collections;
+using NUnit.Framework;
+using System.Collections.Generic;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -14,14 +16,35 @@ public class DialogueManager : MonoBehaviour
     
     // Player
     [SerializeField] private Player player;
+
+    public List<AudioClip> dialogueSounds;
+    private AudioSource Source;
+    private string charTalking;
+
+
     void Start()
     {
-        
+        Source = GetComponent<AudioSource>();
     }
     
     void Update()
     {
-        
+        charTalking = GetComponent<StateManager>().personTalking;
+        // a state decides which sound to play per character
+        if(charTalking == "Player")
+        {
+            Source.clip = dialogueSounds[0];
+
+        }else if(charTalking == "Friend")
+        {
+            Source.clip = dialogueSounds[1];
+
+        }
+        else if(charTalking == "Guard")
+        {
+            Source.clip = dialogueSounds[2];
+
+        }
     }
 
     public void LockPlayer()
@@ -49,8 +72,11 @@ public class DialogueManager : MonoBehaviour
 
     public void SetDialoguePath(string dialogue, string option1, string option2,  string option3)
     {
-        
-        StartCoroutine(DrawText(dialogue));
+        if (charTalking != "")
+        {
+            StartCoroutine(DrawText(dialogue));
+        }
+            
 
 
         if (option3 != "")
@@ -85,16 +111,19 @@ public class DialogueManager : MonoBehaviour
     IEnumerator DrawText(string drawnText)
     {
         dialogueText.text = "";
+        
 
         for (int i = 0; i < drawnText.Length; i++)
         {
-
+            
             dialogueText.text += drawnText[i];
+            Source.Play();
 
             yield return new WaitForSeconds(0.05f);
 
 
         }
+
 
     }
 }

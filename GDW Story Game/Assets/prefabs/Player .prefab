@@ -194,6 +194,10 @@ MonoBehaviour:
   - {fileID: 7448100488405251153}
   - {fileID: 1526633757697940627}
   player: {fileID: 4134392820119239439}
+  dialogueSounds:
+  - {fileID: 8300000, guid: b0accf12da82c694482946c7adfeccdf, type: 3}
+  - {fileID: 8300000, guid: bf0192b0afe6894429f6c0f24ee124b6, type: 3}
+  - {fileID: 8300000, guid: 6e3bd1ffe575a834294038e882a1f107, type: 3}
 --- !u!114 &2260175437216164156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,6 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StateManager
   dialogueManager: {fileID: 7998326157521320059}
   prompt: {fileID: 6107060163540118409}
+  personTalking: 
   grd: {fileID: 0}
   barPos: {fileID: 0}
   backPos: {fileID: 0}

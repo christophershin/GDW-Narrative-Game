@@ -13,7 +13,9 @@ public class StateManager : MonoBehaviour
     // Data
     private string state = "Intro";
     private string dialogueOption = "";
-    
+    public string personTalking = "";
+
+
     // Items
     private bool guardSupport = true;
     private string weapon = "none";
@@ -33,11 +35,13 @@ public class StateManager : MonoBehaviour
     void Start()
     {
         StartIntro();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             switch (state)
@@ -81,14 +85,17 @@ public class StateManager : MonoBehaviour
         switch (state)
         {
             case "Intro":
+                
                 ContinueIntro();
                 SetDialogue();
                 break;
             case "Guard":
+                personTalking = "Guard";
                 ContinueGuard();
                 SetDialogue();
                 break;
             case "Friend":
+                personTalking = "Friend";
                 ContinueFriend();
                 SetDialogue();
                 break;
@@ -98,7 +105,7 @@ public class StateManager : MonoBehaviour
     private void StartIntro()
     {
         // Activate Box
-        StartDialogue();
+        StartDialogue("Player");
 
         // Dialogue
         dialogue = "*huff* *puff* *huff* *huff* What the was that...?";
@@ -125,8 +132,8 @@ public class StateManager : MonoBehaviour
         
         yield return new  WaitForSeconds(1.5f);
         
-        StartDialogue();
-        
+        StartDialogue("Guard");
+
         // Dialogue
         dialogue = "Why did you call me for?";
         
@@ -137,14 +144,15 @@ public class StateManager : MonoBehaviour
         
         // Set Dialogue
         SetDialogue();
+
     }
     
     private void StartFriend()
     {
         // Activate Box
         prompt.gameObject.SetActive(false);
-        StartDialogue();
-        
+        StartDialogue("Friend");
+
         // Dialogue
         dialogue = "Yo!";
         
@@ -155,6 +163,7 @@ public class StateManager : MonoBehaviour
         
         // Set Dialogue
         SetDialogue();
+
     }
 
     private void ContinueIntro()
@@ -163,7 +172,10 @@ public class StateManager : MonoBehaviour
         {
             // Layer 1
             case "It was probably just a dream":
-                
+
+                // the person talking
+                personTalking = "Player";
+
                 // Dialogue
                 dialogue = "Lets go back to sleep...";
         
@@ -191,17 +203,24 @@ public class StateManager : MonoBehaviour
                 EndDialogue();
                 break;
         }
+        // No charcter is talking
+        personTalking = "";
     }
     
     private void ContinueGuard()
     {
+
         switch (dialogueOption)
         {
             // Stage 1
             case "Never mind":
                 // Consequences
                 guardState = "Away";
-                
+
+
+                // the person talking
+                personTalking = "Guard";
+
                 // Dialogue
                 dialogue = "You just wasted my time man. I had to quit my game because of you.";
         
@@ -214,7 +233,10 @@ public class StateManager : MonoBehaviour
             case "I think someone is going to kill me":
                 // Consequences
                 guardSupport = false;
-                
+
+                // the person talking
+                personTalking = "Guard";
+
                 // Dialogue
                 dialogue = "What are you talking about?";
         
@@ -230,7 +252,10 @@ public class StateManager : MonoBehaviour
                 guardSupport = false;
 
                 guardState = "Away";
-                
+
+                // the person talking
+                personTalking = "Guard";
+
                 // Dialogue
                 dialogue = "Don't call me for useless things again...";
         
@@ -246,6 +271,10 @@ public class StateManager : MonoBehaviour
 
                 if (weapon == "none")
                 {
+
+                    // the person talking
+                    personTalking = "Player";
+
                     // Dialogue
                     dialogue = "He's gone... so what should I do now...";
         
@@ -255,6 +284,9 @@ public class StateManager : MonoBehaviour
                 }
                 else
                 {
+                    // the person talking
+                    personTalking = "Player";
+
                     // Dialogue
                     dialogue = "Bruh he didn't even listen to me...";
         
@@ -268,7 +300,10 @@ public class StateManager : MonoBehaviour
             
             // Stage 3
             case "Maybe it was just a dream" or "At least Garry listened":
-                
+
+                // the person talking
+                personTalking = "Player";
+
                 // Dialogue
                 dialogue = "Lets go to sleep now...";
         
@@ -299,12 +334,17 @@ public class StateManager : MonoBehaviour
     
     private void ContinueFriend()
     {
+
         switch (dialogueOption)
         {
             // Stage 1
             case "Dude, I have to tell you something":
                 // Consequences
-                
+
+
+                // the person talking
+                personTalking = "Friend";
+
                 // Dialogue
                 dialogue = "Im all ears :)";
         
@@ -315,6 +355,11 @@ public class StateManager : MonoBehaviour
                 
                 break;
             case "Never mind":
+
+
+                // the person talking
+                personTalking = "Friend";
+
                 // Dialogue
                 dialogue = "Ok man...";
         
@@ -327,6 +372,11 @@ public class StateManager : MonoBehaviour
             
             // Stage 2
             case "So I had this weird dream":
+
+
+                // the person talking
+                personTalking = "Friend";
+
                 // Dialogue
                 dialogue = "I never knew you were the type to be scared about a silly little dream.";
         
@@ -337,6 +387,11 @@ public class StateManager : MonoBehaviour
                 
                 break;
             case "Actually forget it" or "Nevermind gotta sleep":
+
+                // the person talking
+                personTalking = "Friend";
+
+
                 // Dialogue
                 dialogue = "Ok man...";
         
@@ -347,6 +402,11 @@ public class StateManager : MonoBehaviour
                 
                 break;
             case "Actually lemme tell you":
+
+                // the person talking
+                personTalking = "Friend";
+
+
                 // Dialogue
                 dialogue = "Go ahead.";
         
@@ -359,6 +419,12 @@ public class StateManager : MonoBehaviour
             
             // Stage 3
             case "Someone killed me":
+
+
+                // the person talking
+                personTalking = "Friend";
+
+
                 // Dialogue
                 dialogue = "Hmm so it was that bad huh... tell me more";
         
@@ -371,6 +437,12 @@ public class StateManager : MonoBehaviour
             
             // Stage 4
             case "It was some psycho killer":
+
+
+                // the person talking
+                personTalking = "Friend";
+
+
                 // Dialogue
                 dialogue = "It does sound scary. Now tell me, what did he look like?";
         
@@ -383,6 +455,12 @@ public class StateManager : MonoBehaviour
             
             // Stage 5
             case "I can't tell. He was wearing a mask.":
+
+
+                // the person talking
+                personTalking = "Friend";
+
+
                 // Dialogue
                 dialogue = "Hmm....";
         
@@ -395,6 +473,12 @@ public class StateManager : MonoBehaviour
             
             // Stage 6
             case "And that crazy guy was laughing too.":
+
+
+                // the person talking
+                personTalking = "Friend";
+
+
                 // Dialogue
                 dialogue = "*Laughing* This sounds mad funny im not gonna lie";
         
@@ -407,6 +491,12 @@ public class StateManager : MonoBehaviour
             
             // Stage 7
             case "What the hell man?" or "Bruh...":
+
+
+                // the person talking
+                personTalking = "Friend";
+
+
                 // Dialogue
                 dialogue = "*Still Laughing* Sorry man, you can continue";
         
@@ -419,6 +509,11 @@ public class StateManager : MonoBehaviour
             
             // Stage 8
             case "....": // four dots
+
+                // the person talking
+                personTalking = "Friend";
+
+
                 // Dialogue
                 dialogue = "So what happened next?";
         
@@ -430,7 +525,13 @@ public class StateManager : MonoBehaviour
                 break;
             
             // Stage 9
-            case "He hit me with a crowbar, and I woke up panting.": 
+            case "He hit me with a crowbar, and I woke up panting.":
+
+                // the person talking
+                personTalking = "Friend";
+
+
+
                 // Dialogue
                 dialogue = "Damn... tell you what. If you're still scared, I can offer you some defense measures.";
         
@@ -442,7 +543,13 @@ public class StateManager : MonoBehaviour
                 break;
             
             // Stage 10
-            case "Yes please" or "Never mind, gimme the defense measures": 
+            case "Yes please" or "Never mind, gimme the defense measures":
+
+
+                // the person talking
+                personTalking = "Friend";
+
+
                 // Dialogue
                 dialogue = "Ok pick one of these.";
 
@@ -454,7 +561,12 @@ public class StateManager : MonoBehaviour
                 option3 = "Pick the photograph"; //
                 
                 break;
-            case "Actually, I think it was just a dream": 
+            case "Actually, I think it was just a dream":
+
+                // the person talking
+                personTalking = "Friend";
+
+
                 // Dialogue
                 dialogue = "If you think so";
         
@@ -466,7 +578,13 @@ public class StateManager : MonoBehaviour
                 break;
             
             // Stage 11
-            case "Alright, I'm gonna sleep": 
+            case "Alright, I'm gonna sleep":
+
+
+                // the person talking
+                personTalking = "Friend";
+
+
                 // Dialogue
                 dialogue = "Good night man";
         
@@ -481,7 +599,12 @@ public class StateManager : MonoBehaviour
             case "Pick the dagger": 
                 // Consequences
                 weapon = "Dagger";
-                
+
+
+                // the person talking
+                personTalking = "Friend";
+
+
                 // Dialogue
                 dialogue = "Great choice! You should probably go to sleep now.";
         
@@ -494,7 +617,11 @@ public class StateManager : MonoBehaviour
             case "Pick the gun":
                 // Consequences
                 weapon = "Gun";
-                
+
+
+                // the person talking
+                personTalking = "Friend";
+
                 // Dialogue
                 dialogue = "Careful though, it only has one bullet.";
         
@@ -506,7 +633,12 @@ public class StateManager : MonoBehaviour
                 break;
             
             // Pick Photograph
-            case "Pick the photograph": 
+            case "Pick the photograph":
+
+                // the person talking
+                personTalking = "Friend";
+
+
                 // Dialogue
                 dialogue = "What the hell man? That wasn't even an option...";
         
@@ -516,7 +648,12 @@ public class StateManager : MonoBehaviour
                 option3 = "";
                 
                 break;
-            case "You said to pick something!": 
+            case "You said to pick something!":
+
+                // the person talking
+                personTalking = "Friend";
+
+
                 // Dialogue
                 dialogue = "Yeah... but not this...";
         
@@ -527,7 +664,12 @@ public class StateManager : MonoBehaviour
                 
                 break;
             
-            case "Gimme the photograph!": 
+            case "Gimme the photograph!":
+
+                // the person talking
+                personTalking = "Friend";
+
+
                 // Dialogue
                 dialogue = "WHY DO YOU WANT A PICTURE OF MY WIFE????!!!!";
         
@@ -538,7 +680,12 @@ public class StateManager : MonoBehaviour
                 
                 break;
             
-            case "Gimme the picture like you promised!": 
+            case "Gimme the picture like you promised!":
+
+                // the person talking
+                personTalking = "Friend";
+
+
                 // Dialogue
                 dialogue = "HELL NO!!!";
         
@@ -549,7 +696,12 @@ public class StateManager : MonoBehaviour
                 
                 break;
             
-            case "I thought you don't go back on your promise...": 
+            case "I thought you don't go back on your promise...":
+
+                // the person talking
+                personTalking = "Friend";
+
+
                 // Dialogue
                 dialogue = "Are you deadass?";
         
@@ -560,7 +712,13 @@ public class StateManager : MonoBehaviour
                 
                 break;
             
-            case "Yes! Now gimme the picture.": 
+            case "Yes! Now gimme the picture.":
+
+
+                // the person talking
+                personTalking = "Friend";
+
+
                 // Dialogue
                 dialogue = "Fine... you can have the picture...";
         
@@ -574,7 +732,11 @@ public class StateManager : MonoBehaviour
             case "Thank you": 
                 // Consequences
                 weapon = "Photograph";
-                
+
+
+                // the person talking
+                personTalking = "Friend";
+
                 // Dialogue
                 dialogue = "You should probably go to sleep now";
         
@@ -585,7 +747,12 @@ public class StateManager : MonoBehaviour
                 
                 break;
             
-            case "Ok, I'll pick something else" or "I was joking, lemme pick something else" or "Fine, I'll pick something else": 
+            case "Ok, I'll pick something else" or "I was joking, lemme pick something else" or "Fine, I'll pick something else":
+
+                // the person talking
+                personTalking = "Friend";
+
+
                 // Dialogue
                 dialogue = "THANK YOU!!! Now pick one of these";
         
@@ -597,7 +764,12 @@ public class StateManager : MonoBehaviour
                 break;
             
             // Questioning
-            case "So how the hell did you get weapons in here" or "So how exactly did you get weapons in here": 
+            case "So how the hell did you get weapons in here" or "So how exactly did you get weapons in here":
+
+                // the person talking
+                personTalking = "Friend";
+
+
                 // Dialogue
                 dialogue = "I have my ways ;)";
         
@@ -608,7 +780,12 @@ public class StateManager : MonoBehaviour
                 
                 break;
             
-            case "ok..." or "Alright, thanks man.": 
+            case "ok..." or "Alright, thanks man.":
+
+
+                // the person talking
+                personTalking = "Friend";
+
                 // Dialogue
                 dialogue = "You should probably go to sleep now";
         
@@ -629,6 +806,11 @@ public class StateManager : MonoBehaviour
                 break;
             
             case "I should probably tell the guards about the dream":
+
+                // the person talking
+                personTalking = "Friend";
+
+
                 // Dialogue
                 dialogue = "They will probably call you crazy but tell them if you want";
                 
@@ -640,6 +822,11 @@ public class StateManager : MonoBehaviour
                 break;
             
             case "You're right. Gotta go sleep now":
+
+                // the person talking
+                personTalking = "Friend";
+
+
                 // Dialogue
                 dialogue = "Good night man";
                 
@@ -662,14 +849,16 @@ public class StateManager : MonoBehaviour
         }
     }
 
-    private void StartDialogue()
+    private void StartDialogue(string charTalk)
     {
         dialogueManager.ActivateNarration();
+        personTalking = charTalk;
     }
 
     private void EndDialogue()
     {
         dialogueManager.DeactivateNarration();
+        personTalking = "";
     }
     
     private void SetDialogue()
