@@ -3,6 +3,7 @@ using TMPro;
 using System.Collections;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StateManager : MonoBehaviour
 {
@@ -28,11 +29,14 @@ public class StateManager : MonoBehaviour
     // Garry
     private bool garryGive = false;
     public Animator garryAnimator;
-    public GameObject dagger, gun;
+    public GameObject dagger, gun, photograph;
 
     void Start()
     {
         StartIntro();
+        PlayerPrefs.SetString("Weapon", "none");
+        PlayerPrefs.SetString("GuardSupport", "true");
+        PlayerPrefs.Save();
     }
 
     // Update is called once per frame
@@ -47,6 +51,9 @@ public class StateManager : MonoBehaviour
                     break;
                 case "Friend":
                     StartFriend();
+                    break;
+                case "Sleep":
+                    SceneManager.LoadScene("sleep scene");
                     break;
             }
         }
@@ -72,6 +79,18 @@ public class StateManager : MonoBehaviour
         garryAnimator.SetBool("Pick", garryGive);
         gun.SetActive(garryGive);
         dagger.SetActive(garryGive);
+        
+        if (weapon != "none")
+        {
+            garryGive = false;
+
+            if (weapon == "Photograph")
+            {
+                PlayerPrefs.SetString("Weapon", "Photograph");
+                PlayerPrefs.Save();
+                photograph.SetActive(false);
+            }
+        }
     }
     
     public void PickDialogueOption(TextMeshProUGUI t)
@@ -101,7 +120,7 @@ public class StateManager : MonoBehaviour
         StartDialogue();
 
         // Dialogue
-        dialogue = "*huff* *puff* *huff* *huff* What the was that...?";
+        dialogue = "W-Was that just a dream, it must have been! After all this time I spent locked up here I must be going crazy.";
         
         // Options
         option1 = "It was probably just a dream";
@@ -188,6 +207,8 @@ public class StateManager : MonoBehaviour
             //Layer 2
             case "...":
                 state = "Sleep";
+                PlayerPrefs.SetString("State", "Sleep");
+                PlayerPrefs.Save();
                 EndDialogue();
                 break;
         }
@@ -213,14 +234,13 @@ public class StateManager : MonoBehaviour
                 break;
             case "I think someone is going to kill me":
                 // Consequences
-                guardSupport = false;
                 
                 // Dialogue
                 dialogue = "What are you talking about?";
         
                 // Options
                 option1 = "So I had this dream";
-                option2 = "";
+                option2 = "Never mind";
                 option3 = "";
                 
                 break;
@@ -228,6 +248,8 @@ public class StateManager : MonoBehaviour
             case "So I had this dream":
                 // Consequences
                 guardSupport = false;
+                PlayerPrefs.SetString("GuardSupport", "false");
+                PlayerPrefs.Save();
 
                 guardState = "Away";
                 
@@ -255,19 +277,32 @@ public class StateManager : MonoBehaviour
                 }
                 else
                 {
-                    // Dialogue
-                    dialogue = "Bruh he didn't even listen to me...";
+                    if (guardSupport == true)
+                    {
+                        // Dialogue
+                        dialogue = "Yep not telling was the right call";
         
-                    // Options
-                    option1 = "At least Garry listened";
-                    option2 = ""; 
+                        // Options
+                        option1 = "At least I told garry";
+                        option2 = ""; 
+                    }
+                    else
+                    {
+                        // Dialogue
+                        dialogue = "Bruh he didn't even listen to me...";
+        
+                        // Options
+                        option1 = "At least Garry listened";
+                        option2 = ""; 
+                    }
+                    
                 }
                 option3 = "";
                 
                 break;
             
             // Stage 3
-            case "Maybe it was just a dream" or "At least Garry listened":
+            case "Maybe it was just a dream" or "At least Garry listened" or "At least I told garry":
                 
                 // Dialogue
                 dialogue = "Lets go to sleep now...";
@@ -482,6 +517,9 @@ public class StateManager : MonoBehaviour
                 // Consequences
                 weapon = "Dagger";
                 
+                PlayerPrefs.SetString("Weapon", "Dagger");
+                PlayerPrefs.Save();
+                
                 // Dialogue
                 dialogue = "Great choice! You should probably go to sleep now.";
         
@@ -494,6 +532,9 @@ public class StateManager : MonoBehaviour
             case "Pick the gun":
                 // Consequences
                 weapon = "Gun";
+                
+                PlayerPrefs.SetString("Weapon", "Gun");
+                PlayerPrefs.Save();
                 
                 // Dialogue
                 dialogue = "Careful though, it only has one bullet.";
@@ -574,6 +615,10 @@ public class StateManager : MonoBehaviour
             case "Thank you": 
                 // Consequences
                 weapon = "Photograph";
+                
+                PlayerPrefs.SetString("Weapon", "Photograph");
+                PlayerPrefs.Save();
+                photograph.SetActive(false);
                 
                 // Dialogue
                 dialogue = "You should probably go to sleep now";
@@ -690,6 +735,12 @@ public class StateManager : MonoBehaviour
             prompt.gameObject.SetActive(true);
             prompt.text = "Press E to talk";
         }
+
+        if (other.CompareTag("Sleep") && state == "Sleep")
+        {
+            prompt.gameObject.SetActive(true);
+            prompt.text = "Press E to sleep";
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -700,6 +751,11 @@ public class StateManager : MonoBehaviour
         }
         
         if (other.CompareTag("Friend")  && state == "Friend")
+        {
+            prompt.gameObject.SetActive(false);
+        }
+        
+        if (other.CompareTag("Sleep") && state == "Sleep")
         {
             prompt.gameObject.SetActive(false);
         }

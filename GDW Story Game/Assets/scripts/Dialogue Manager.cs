@@ -40,9 +40,13 @@ public class DialogueManager : MonoBehaviour
         buttons[2].SetActive(false);
     }
 
-    public void DeactivateNarration()
+    public void DeactivateNarration(bool freePlayer = true)
     {
-        player.FreePlayer();
+        if (freePlayer == true)
+        {
+            player.FreePlayer();
+        }
+        
         dialogueBox.SetActive(false);
     }
 
