@@ -105,15 +105,18 @@ public class StateManager : MonoBehaviour
         {
             case "Intro":
                 ContinueIntro();
-                SetDialogue();
+                //SetDialogue();
+                StartCoroutine(dialogueManager.SetDialoguePath(dialogue, option1,  option2,  option3));
                 break;
             case "Guard":
                 ContinueGuard();
-                SetDialogue();
+                //SetDialogue();
+                StartCoroutine(dialogueManager.SetDialoguePath(dialogue, option1,  option2,  option3));
                 break;
             case "Friend":
                 ContinueFriend();
-                SetDialogue();
+                //SetDialogue();
+                StartCoroutine(dialogueManager.SetDialoguePath(dialogue, option1,  option2,  option3));
                 break;
         }
     }
@@ -124,7 +127,7 @@ public class StateManager : MonoBehaviour
         StartDialogue();
 
         // Dialogue
-        dialogue = "W-Was that just a dream, it must have been! After all this time I spent locked up here I must be going crazy.";
+        dialogue = "Was that just a dream, it must have been! After all this time I spent locked up here I must be going crazy.";
         
         // Options
         option1 = "It was probably just a dream";
@@ -132,7 +135,8 @@ public class StateManager : MonoBehaviour
         option3 = "Lets tell Garry, he knows what to do";
         
         // Set Dialogue
-        SetDialogue();
+        //SetDialogue();
+        StartCoroutine(dialogueManager.SetDialoguePath(dialogue, option1,  option2,  option3));
     }
 
     private IEnumerator StartGuard()
@@ -159,7 +163,8 @@ public class StateManager : MonoBehaviour
         option3 = "";
         
         // Set Dialogue
-        SetDialogue();
+        //SetDialogue();
+        StartCoroutine(dialogueManager.SetDialoguePath(dialogue, option1,  option2,  option3));
     }
     
     private void StartFriend()
@@ -177,7 +182,8 @@ public class StateManager : MonoBehaviour
         option3 = "";
         
         // Set Dialogue
-        SetDialogue();
+        //SetDialogue();
+        StartCoroutine(dialogueManager.SetDialoguePath(dialogue, option1,  option2,  option3));
     }
 
     private void ContinueIntro()

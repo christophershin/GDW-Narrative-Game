@@ -17,17 +17,17 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Player player;
     
     // State Manager
-    private StateManager stateManager;
+    public StateManager stateManager;
     
     // Audio
     public List<AudioClip> dialogueSounds;
-    private AudioSource audioSource;
+    public AudioSource audioSource;
     private string charTalking;
     
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
-        stateManager = GetComponent<StateManager>();
+        //audioSource = GetComponent<AudioSource>();
+        //stateManager = GetComponent<StateManager>();
     }
     
     void Update()
@@ -77,6 +77,9 @@ public class DialogueManager : MonoBehaviour
 
     public IEnumerator SetDialoguePath(string dialogue, string option1, string option2,  string option3)
     {
+        
+        
+        
         buttons[0].SetActive(false);
         buttons[1].SetActive(false);
         buttons[2].SetActive(false);
