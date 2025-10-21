@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using System.Collections;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -48,7 +49,9 @@ public class DialogueManager : MonoBehaviour
 
     public void SetDialoguePath(string dialogue, string option1, string option2,  string option3)
     {
-        dialogueText.text = dialogue;
+        
+        StartCoroutine(DrawText(dialogue));
+
 
         if (option3 != "")
         {
@@ -77,5 +80,21 @@ public class DialogueManager : MonoBehaviour
             
             buttonTexts[0].text = option1;
         }
+    }
+
+    IEnumerator DrawText(string drawnText)
+    {
+        dialogueText.text = "";
+
+        for (int i = 0; i < drawnText.Length; i++)
+        {
+
+            dialogueText.text += drawnText[i];
+
+            yield return new WaitForSeconds(0.05f);
+
+
+        }
+
     }
 }
