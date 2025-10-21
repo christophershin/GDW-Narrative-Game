@@ -21,7 +21,7 @@ public class SleepManager : MonoBehaviour
     public TextMeshProUGUI ending, endReason;
     
     // Ending Stuff
-    private string isEnd = "hit";
+    private string isEnd = "none";
     
     // Time
     private float time = 0;
@@ -39,7 +39,7 @@ public class SleepManager : MonoBehaviour
             guardSupport = false;
         }
         
-        SlasherEvent();
+        SlasherEvent("");
     }
 
     private void Update()
