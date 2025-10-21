@@ -82,41 +82,44 @@ public class DialogueManager : MonoBehaviour
         buttons[2].SetActive(false);
         
         dialogueText.text = "";
-        
-        foreach (char c in dialogue)
-        {
-            dialogueText.text += c;
-            // Source.Play();
 
-            yield return new WaitForSeconds(0.025f);
-        }
+        if (dialogueBox.activeSelf == true)
+        {
+            foreach (char c in dialogue)
+            {
+                dialogueText.text += c;
+                audioSource.Play();
 
-        if (option3 != "")
-        {
-            buttons[0].SetActive(true);
-            buttons[1].SetActive(true);
-            buttons[2].SetActive(true);
+                yield return new WaitForSeconds(0.025f);
+            }
             
-            buttonTexts[0].text = option3;
-            buttonTexts[1].text = option2;
-            buttonTexts[2].text = option1;
-        }
-        else if (option2 != "")
-        {
-            buttons[0].SetActive(true);
-            buttons[1].SetActive(true);
-            buttons[2].SetActive(false);
+            if (option3 != "")
+            {
+                buttons[0].SetActive(true);
+                buttons[1].SetActive(true);
+                buttons[2].SetActive(true);
             
-            buttonTexts[0].text = option2;
-            buttonTexts[1].text = option1;
-        }
-        else
-        {
-            buttons[0].SetActive(true);
-            buttons[1].SetActive(false);
-            buttons[2].SetActive(false);
+                buttonTexts[0].text = option3;
+                buttonTexts[1].text = option2;
+                buttonTexts[2].text = option1;
+            }
+            else if (option2 != "")
+            {
+                buttons[0].SetActive(true);
+                buttons[1].SetActive(true);
+                buttons[2].SetActive(false);
             
-            buttonTexts[0].text = option1;
+                buttonTexts[0].text = option2;
+                buttonTexts[1].text = option1;
+            }
+            else
+            {
+                buttons[0].SetActive(true);
+                buttons[1].SetActive(false);
+                buttons[2].SetActive(false);
+            
+                buttonTexts[0].text = option1;
+            }
         }
     }
 }

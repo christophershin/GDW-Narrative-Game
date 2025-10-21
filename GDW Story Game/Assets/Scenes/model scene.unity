@@ -3199,7 +3199,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1870658782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3220,7 +3220,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'E: Call Guard'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3288,7 +3288,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1870658783
@@ -5015,6 +5015,7 @@ MonoBehaviour:
     m_Bits: 64
   playerSounds:
   - {fileID: 8300000, guid: 3598f77e22e6d044dbfe184d33c3aaf8, type: 3}
+  stepInterval: 0.2
 --- !u!33 &3379056202003724105
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6736,6 +6737,10 @@ MonoBehaviour:
   - {fileID: 1750655760}
   - {fileID: 1301673778}
   player: {fileID: 3237375161091140828}
+  dialogueSounds:
+  - {fileID: 8300000, guid: 8e578943dab35c34caf3874a953b0a3f, type: 3}
+  - {fileID: 8300000, guid: 929041453a345b347b4798d53866a956, type: 3}
+  - {fileID: 8300000, guid: 1e10def8c88b2874fb3ef03ead3ba68c, type: 3}
 --- !u!114 &8213983013496453314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6750,6 +6755,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StateManager
   dialogueManager: {fileID: 8213983013496453313}
   prompt: {fileID: 1870658782}
+  personTalking: 
   grd: {fileID: 1714221694}
   barPos: {fileID: 1110287068}
   backPos: {fileID: 1198946783}
