@@ -9,7 +9,8 @@ public class DialogueManager : MonoBehaviour
     // Dialogues
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private TextMeshProUGUI dialogueText;
-    
+
+
     // Buttons
     [SerializeField] private GameObject[] buttons;
     [SerializeField] private TextMeshProUGUI[] buttonTexts;
@@ -31,19 +32,23 @@ public class DialogueManager : MonoBehaviour
     {
         charTalking = GetComponent<StateManager>().personTalking;
         // a state decides which sound to play per character
-        if(charTalking == "Player")
+        if (dialogueText.isActiveAndEnabled)
         {
-            Source.clip = dialogueSounds[0];
+            if (charTalking == "Player")
+            {
+                Source.clip = dialogueSounds[0];
 
-        }else if(charTalking == "Friend")
-        {
-            Source.clip = dialogueSounds[1];
+            }
+            else if (charTalking == "Friend")
+            {
+                Source.clip = dialogueSounds[1];
 
-        }
-        else if(charTalking == "Guard")
-        {
-            Source.clip = dialogueSounds[2];
+            }
+            else if (charTalking == "Guard")
+            {
+                Source.clip = dialogueSounds[2];
 
+            }
         }
     }
 
@@ -72,7 +77,7 @@ public class DialogueManager : MonoBehaviour
 
     public void SetDialoguePath(string dialogue, string option1, string option2,  string option3)
     {
-        if (charTalking != "")
+        if (charTalking != "" && dialogueText.isActiveAndEnabled)
         {
             StartCoroutine(DrawText(dialogue));
         }
@@ -124,6 +129,6 @@ public class DialogueManager : MonoBehaviour
 
         }
 
-
+        //GetComponent<StateManager>().personTalking = "";
     }
 }

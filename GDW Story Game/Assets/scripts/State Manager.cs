@@ -47,9 +47,11 @@ public class StateManager : MonoBehaviour
             switch (state)
             {
                 case "Guard":
+                    personTalking = state;
                     StartCoroutine(StartGuard());
                     break;
                 case "Friend":
+                    personTalking = state;
                     StartFriend();
                     break;
             }
@@ -204,7 +206,7 @@ public class StateManager : MonoBehaviour
                 break;
         }
         // No charcter is talking
-        personTalking = "";
+        //personTalking = "";
     }
     
     private void ContinueGuard()
@@ -858,7 +860,7 @@ public class StateManager : MonoBehaviour
     private void EndDialogue()
     {
         dialogueManager.DeactivateNarration();
-        personTalking = "";
+        //personTalking = "";
     }
     
     private void SetDialogue()
