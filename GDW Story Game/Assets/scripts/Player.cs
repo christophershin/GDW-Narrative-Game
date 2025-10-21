@@ -133,7 +133,7 @@ public class Player : MonoBehaviour
             {
                 Debug.Log("move");
                 SoundPlayer.clip = playerSounds[0];
-                //SoundPlayer.pitch = Random.Range(0.9f, 1.1f);
+                SoundPlayer.pitch = Random.Range(0.9f, 1.1f);
                 SoundPlayer.Play();
 
                 stepCounter = stepInterval;

@@ -600,7 +600,7 @@ GameObject:
   - component: {fileID: 2414848759492160926}
   - component: {fileID: 4408390514842979328}
   - component: {fileID: 4031596737581285090}
-  - component: {fileID: 982929999041713880}
+  - component: {fileID: 2068715183435182065}
   m_Layer: 0
   m_Name: Player
   m_TagString: Sleep
@@ -703,7 +703,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   playerSounds:
-  - {fileID: 8300000, guid: 6207ba5471bb60e4fb5083549e63cb49, type: 3}
+  - {fileID: 8300000, guid: 558b14cb72ad92b4b88746321ab3bc81, type: 3}
   stepInterval: 0.7
 --- !u!136 &790690169574765174
 CapsuleCollider:
@@ -804,7 +804,7 @@ MonoBehaviour:
   dagger: {fileID: 0}
   gun: {fileID: 0}
   photograph: {fileID: 0}
---- !u!82 &982929999041713880
+--- !u!82 &2068715183435182065
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -816,7 +816,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
