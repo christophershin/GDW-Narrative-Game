@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
     private bool canMove;
     public List<AudioClip> playerSounds;
     private AudioSource SoundPlayer;
+    private float stepCounter = 0;
+    public float stepInterval = 0.2f;
 
 
     public void LockPlayer()
@@ -113,6 +115,8 @@ public class Player : MonoBehaviour
     void MovePlayer()
     {
 
+        stepCounter -= Time.deltaTime;
+
         Vector3 movement = (transform.right * moveHorizontal + transform.forward * moveForward).normalized;
         Vector3 targetVelocity = movement * MoveSpeed;
 
@@ -122,12 +126,29 @@ public class Player : MonoBehaviour
         velocity.z = targetVelocity.z;
         rb.linearVelocity = velocity;
 
+
+        if(isGrounded && canMove && (moveHorizontal != 0 || moveForward != 0))
+        {
+            if (stepCounter <= 0)
+            {
+                Debug.Log("move");
+                SoundPlayer.clip = playerSounds[0];
+                SoundPlayer.pitch = Random.Range(0.9f, 1.1f);
+                SoundPlayer.Play();
+
+                stepCounter = stepInterval;
+            }
+        }
+
+        
+
         // If we aren't moving and are on the ground, stop velocity so we don't slide
         if (isGrounded && moveHorizontal == 0 && moveForward == 0 && canMove)
         {
             rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
-
+            //SoundPlayer.Stop();
         }
+
     }
 
     void RotateCamera()

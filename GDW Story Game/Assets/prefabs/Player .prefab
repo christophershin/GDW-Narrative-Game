@@ -119,7 +119,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   playerSounds:
-  - {fileID: 8300000, guid: 3598f77e22e6d044dbfe184d33c3aaf8, type: 3}
+  - {fileID: 8300000, guid: 6207ba5471bb60e4fb5083549e63cb49, type: 3}
+  stepInterval: 0.7
 --- !u!136 &2012583790562206445
 CapsuleCollider:
   m_ObjectHideFlags: 0
