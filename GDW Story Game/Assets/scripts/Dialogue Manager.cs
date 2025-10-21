@@ -23,6 +23,8 @@ public class DialogueManager : MonoBehaviour
     public List<AudioClip> dialogueSounds;
     public AudioSource audioSource;
     private string charTalking;
+
+    public bool isFinalArc;
     
     void Start()
     {
@@ -32,24 +34,30 @@ public class DialogueManager : MonoBehaviour
     
     void Update()
     {
-        charTalking = stateManager.personTalking;
-
-        if(dialogueBox.activeSelf == true)
+        if (isFinalArc)
         {
-            switch (charTalking)
+            audioSource.clip = dialogueSounds[1];
+        }
+        else
+        {
+            charTalking = stateManager.personTalking;
+
+            if(dialogueBox.activeSelf == true)
             {
-                case "Player":
-                    audioSource.clip = dialogueSounds[0];
-                    break;
-                case "Friend":
-                    audioSource.clip = dialogueSounds[1];
-                    break;
-                case "Guard":
-                    audioSource.clip = dialogueSounds[2];
-                    break;
+                switch (charTalking)
+                {
+                    case "Player":
+                        audioSource.clip = dialogueSounds[0];
+                        break;
+                    case "Friend":
+                        audioSource.clip = dialogueSounds[1];
+                        break;
+                    case "Guard":
+                        audioSource.clip = dialogueSounds[2];
+                        break;
+                }
             }
         }
-
     }
 
     public void LockPlayer()
@@ -94,7 +102,7 @@ public class DialogueManager : MonoBehaviour
                 dialogueText.text += c;
                 audioSource.Play();
 
-                yield return new WaitForSeconds(0.03f);
+                yield return new WaitForSeconds(0.025f);
             }
             
             if (option3 != "")

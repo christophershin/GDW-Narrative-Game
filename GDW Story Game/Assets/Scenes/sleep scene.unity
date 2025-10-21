@@ -3619,6 +3619,7 @@ GameObject:
   - component: {fileID: 8213983013496453313}
   - component: {fileID: 8213983013496453315}
   - component: {fileID: 8213983013496453316}
+  - component: {fileID: 8213983013496453317}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -6669,18 +6670,21 @@ MonoBehaviour:
   dialogueBox: {fileID: 1700466073}
   dialogueText: {fileID: 135103293356658814}
   buttons:
-  - {fileID: 1253361490}
-  - {fileID: 1432576191}
   - {fileID: 1141320823}
+  - {fileID: 1432576191}
+  - {fileID: 1253361490}
   buttonTexts:
-  - {fileID: 925708630}
-  - {fileID: 1750655760}
   - {fileID: 1301673778}
+  - {fileID: 1750655760}
+  - {fileID: 925708630}
   player: {fileID: 3237375161091140828}
+  stateManager: {fileID: 0}
   dialogueSounds:
   - {fileID: 8300000, guid: 8e578943dab35c34caf3874a953b0a3f, type: 3}
   - {fileID: 8300000, guid: 929041453a345b347b4798d53866a956, type: 3}
   - {fileID: 8300000, guid: 1e10def8c88b2874fb3ef03ead3ba68c, type: 3}
+  audioSource: {fileID: 8213983013496453315}
+  isFinalArc: 1
 --- !u!82 &8213983013496453315
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6798,6 +6802,28 @@ MonoBehaviour:
   endScreen: {fileID: 1982173493}
   ending: {fileID: 181398323}
   endReason: {fileID: 1221802236}
+--- !u!114 &8213983013496453317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190480090106610797}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 658f652fea71c90438c0cf4c862c5dd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StateManager
+  dialogueManager: {fileID: 0}
+  prompt: {fileID: 0}
+  personTalking: 
+  grd: {fileID: 0}
+  barPos: {fileID: 0}
+  backPos: {fileID: 0}
+  garryAnimator: {fileID: 0}
+  dagger: {fileID: 0}
+  gun: {fileID: 0}
+  photograph: {fileID: 0}
 --- !u!1 &8445914067072812165
 GameObject:
   m_ObjectHideFlags: 0
