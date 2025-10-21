@@ -20,6 +20,15 @@ public class StateManager : MonoBehaviour
     
     // Options
     private string dialogue, option1,  option2, option3;
+    
+    // Guard
+    private string guardState = "wait";
+    [SerializeField] private Transform grd, barPos, backPos;
+    
+    // Garry
+    private bool garryGive = false;
+    public Animator garryAnimator;
+    public GameObject dagger, gun;
 
     void Start()
     {
@@ -34,13 +43,35 @@ public class StateManager : MonoBehaviour
             switch (state)
             {
                 case "Guard":
-                    StartGuard();
+                    StartCoroutine(StartGuard());
                     break;
                 case "Friend":
                     StartFriend();
                     break;
             }
         }
+
+        if (guardState == "Bar")
+        {
+            grd.position = Vector3.MoveTowards(
+                grd.position,
+                barPos.position,
+                6f * Time.deltaTime
+            );;
+        }
+
+        if (guardState == "Away")
+        {
+            grd.position = Vector3.MoveTowards(
+                grd.position,
+                backPos.position,
+                6f * Time.deltaTime
+            );;
+        }
+        
+        garryAnimator.SetBool("Pick", garryGive);
+        gun.SetActive(garryGive);
+        dagger.SetActive(garryGive);
     }
     
     public void PickDialogueOption(TextMeshProUGUI t)
@@ -70,24 +101,30 @@ public class StateManager : MonoBehaviour
         StartDialogue();
 
         // Dialogue
-        dialogue = "What was that?";
-        
-
-        
+        dialogue = "*huff* *puff* *huff* *huff* What the was that...?";
         
         // Options
         option1 = "It was probably just a dream";
         option2 = "Scary... I should tell a guard";
-        option3 = "Lets tell Garry";
+        option3 = "Lets tell Garry, he knows what to do";
         
         // Set Dialogue
         SetDialogue();
     }
 
-    private void StartGuard()
+    private IEnumerator StartGuard()
     {
         // Activate Box
         prompt.gameObject.SetActive(false);
+        
+        // Lock Player
+        dialogueManager.LockPlayer();
+        
+        // Move Guard
+        guardState = "Bar";
+        
+        yield return new  WaitForSeconds(1.5f);
+        
         StartDialogue();
         
         // Dialogue
@@ -142,7 +179,7 @@ public class StateManager : MonoBehaviour
                 state = "Guard";
                 EndDialogue();
                 break;
-            case "Lets tell Garry":
+            case "Lets tell Garry, he knows what to do":
                 // Consequences
                 state = "Friend";
                 EndDialogue();
@@ -163,6 +200,7 @@ public class StateManager : MonoBehaviour
             // Stage 1
             case "Never mind":
                 // Consequences
+                guardState = "Away";
                 
                 // Dialogue
                 dialogue = "You just wasted my time man. I had to quit my game because of you.";
@@ -176,6 +214,22 @@ public class StateManager : MonoBehaviour
             case "I think someone is going to kill me":
                 // Consequences
                 guardSupport = false;
+                
+                // Dialogue
+                dialogue = "What are you talking about?";
+        
+                // Options
+                option1 = "So I had this dream";
+                option2 = "";
+                option3 = "";
+                
+                break;
+            
+            case "So I had this dream":
+                // Consequences
+                guardSupport = false;
+
+                guardState = "Away";
                 
                 // Dialogue
                 dialogue = "Don't call me for useless things again...";
@@ -197,7 +251,7 @@ public class StateManager : MonoBehaviour
         
                     // Options
                     option1 = "Maybe it was just a dream";
-                    option2 = "Lets tell Garry";
+                    option2 = "Lets tell Garry, he knows what to do";
                 }
                 else
                 {
@@ -224,7 +278,7 @@ public class StateManager : MonoBehaviour
                 option3 = "";
                 
                 break;
-            case "Lets tell Garry":
+            case "Lets tell Garry, he knows what to do":
                 
                 // Consequences
                 state = "Friend";
@@ -309,14 +363,14 @@ public class StateManager : MonoBehaviour
                 dialogue = "Hmm so it was that bad huh... tell me more";
         
                 // Options
-                option1 = "It was some psycho slasher";//
+                option1 = "It was some psycho killer";//
                 option2 = "";
                 option3 = "";
                 
                 break;
             
             // Stage 4
-            case "It was some psycho slasher":
+            case "It was some psycho killer":
                 // Dialogue
                 dialogue = "It does sound scary. Now tell me, what did he look like?";
         
@@ -391,6 +445,8 @@ public class StateManager : MonoBehaviour
             case "Yes please" or "Never mind, gimme the defense measures": 
                 // Dialogue
                 dialogue = "Ok pick one of these.";
+
+                garryGive = true;
         
                 // Options
                 option1 = "Pick the dagger"; //

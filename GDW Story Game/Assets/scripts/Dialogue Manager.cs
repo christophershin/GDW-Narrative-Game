@@ -23,6 +23,11 @@ public class DialogueManager : MonoBehaviour
         
     }
 
+    public void LockPlayer()
+    {
+        player.LockPlayer();
+    }
+
     public void ActivateNarration()
     {
         player.LockPlayer();
