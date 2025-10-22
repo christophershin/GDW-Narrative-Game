@@ -36,7 +36,7 @@ public class animtest : MonoBehaviour
         else
         {
             time += Time.deltaTime;
-            if (time > 1f)
+            if (time > .4f)
             {
                 var stateInfo = anim.GetCurrentAnimatorStateInfo(0);
                 if (stateInfo.normalizedTime >= 1f && !anim.IsInTransition(0))

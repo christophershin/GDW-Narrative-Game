@@ -346,7 +346,7 @@ public class SleepManager : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene("First Curscene");
+        SceneManager.LoadScene("Title Screen");
     }
     
     private void StartDialogue()
