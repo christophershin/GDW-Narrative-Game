@@ -1,7 +1,7 @@
 using System;
 using TMPro;
 using System.Collections;
-using UnityEditor.Experimental.GraphView;
+//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -127,7 +127,7 @@ public class StateManager : MonoBehaviour
         StartDialogue();
 
         // Dialogue
-        dialogue = "Was that just a dream, it must have been! After all this time I spent locked up here I must be going crazy.";
+        dialogue = "Was that just a dream? It must have been! After all this time I spent locked up here I must be going crazy.";
         
         // Options
         option1 = "It was probably just a dream";
@@ -197,28 +197,31 @@ public class StateManager : MonoBehaviour
                 dialogue = "Lets go back to sleep...";
         
                 // Options
-                option1 = "...";
-                option2 = "";
-                option3 = "";
+                option1 = "*sleep*";
+                option2 = "Actually, lets tell Garry";
+                option3 = "Maybe I should tell a guard";
                 
                 break;
-            case "Scary... I should tell a guard":
+            case "Scary... I should tell a guard" or "Maybe I should tell a guard":
                 
                 // Consequences
                 state = "Guard";
                 EndDialogue();
                 break;
-            case "Lets tell Garry, he knows what to do":
+            case "Lets tell Garry, he knows what to do" or "Actually, lets tell Garry":
                 // Consequences
                 state = "Friend";
                 EndDialogue();
                 break;
             
             //Layer 2
-            case "...":
+            case "..." or "*sleep*":
                 state = "Sleep";
                 PlayerPrefs.SetString("State", "Sleep");
                 PlayerPrefs.Save();
+                
+                SceneManager.LoadScene("sleep scene");
+                
                 EndDialogue();
                 break;
         }
@@ -419,7 +422,7 @@ public class StateManager : MonoBehaviour
             // Stage 4
             case "It was some psycho killer":
                 // Dialogue
-                dialogue = "It does sound scary. Now tell me, what did he look like?";
+                dialogue = "Woah, what did he look like?";
         
                 // Options
                 option1 = "He was wearing a mask.";//
@@ -435,7 +438,7 @@ public class StateManager : MonoBehaviour
         
                 // Options
                 option1 = "A super cheap looking mask";//
-                option2 = "He then hit me with a crowbar, and I woke up panting.";
+                option2 = "He then hit me with a crowbar, and I woke up.";
                 option3 = "";
                 
                 break;
@@ -453,9 +456,9 @@ public class StateManager : MonoBehaviour
                 break;
             
             // Stage 7
-            case "What the hell man?" or "You're right":
+            case "What the hell man?":
                 // Dialogue
-                dialogue = "*Still Laughing* Sorry dude, you can continue";
+                dialogue = "Sorry dude, you can continue";
         
                 // Options
                 option1 = "...."; // four dots not 3
@@ -465,19 +468,19 @@ public class StateManager : MonoBehaviour
                 break;
             
             // Stage 8
-            case "....": // four dots
+            case "...." or "You're right": // four dots
                 // Dialogue
                 dialogue = "So what happened next?";
         
                 // Options
-                option1 = "He hit me with a crowbar, and I woke up panting."; //
+                option1 = "He hit me with a crowbar, and I woke up"; //
                 option2 = "";
                 option3 = "";
                 
                 break;
             
             // Stage 9
-            case "He hit me with a crowbar, and I woke up panting." or "He then hit me with a crowbar, and I woke up panting.": 
+            case "He hit me with a crowbar, and I woke up" or "He then hit me with a crowbar, and I woke up.": 
                 // Dialogue
                 dialogue = "Damn... tell you what. If you're still scared, I can offer you some defense measures.";
         
@@ -637,8 +640,8 @@ public class StateManager : MonoBehaviour
         
                 // Options
                 option1 = "Good night"; //
-                option2 = "So how the hell did you get weapons in here"; //
-                option3 = "";
+                option2 = "So how exactly did you get weapons in here?"; //
+                option3 = "I'm going to tell the guards about the dream";
                 
                 break;
             
@@ -674,7 +677,7 @@ public class StateManager : MonoBehaviour
 
                 if (guardSupport == true)
                 {
-                    option2 = "I should probably tell the guards about the dream";//
+                    option2 = "I'm going to tell the guards about the dream";//
                 }
                 else
                 {
@@ -685,9 +688,9 @@ public class StateManager : MonoBehaviour
                 
                 break;
             
-            case "I should probably tell the guards about the dream":
+            case "I'm going to tell the guards about the dream":
                 // Dialogue
-                dialogue = "They will probably call you crazy but tell them if you want";
+                dialogue = "They will call you crazy but tell them if you want";
                 
                 // Options
                 option1 = "You're right. Gotta go sleep now";//

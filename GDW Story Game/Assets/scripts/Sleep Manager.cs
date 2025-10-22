@@ -210,7 +210,7 @@ public class SleepManager : MonoBehaviour
             // Photo
             case "*take out the photograph*":
                 // Dialogue
-                dialogue = "No... you... STOP STOP DONT... DOnT#$Y#Y#$*";
+                dialogue = "No... you... stop STOP DONT... DoNT YoU gRAaAaa.........";
         
                 // Options
                 option1 = "What's going on?";//
