@@ -540,8 +540,8 @@ public class StateManager : MonoBehaviour
         
                 // Options
                 option1 = "Good night"; //
-                option2 = "So how exactly did you get weapons in here"; //
-                option3 = "";
+                option2 = "So how exactly did you get weapons in here?"; //
+                option3 = "I'm going to tell the guards about the dream";
                 
                 break;
             case "Pick the gun":
@@ -556,8 +556,8 @@ public class StateManager : MonoBehaviour
         
                 // Options
                 option1 = "Alright, thanks man."; //
-                option2 = "So how exactly did you get weapons in here"; //
-                option3 = "";
+                option2 = "So how exactly did you get weapons in here?"; //
+                option3 = "I'm going to tell the guards about the dream";
                 
                 break;
             
@@ -657,7 +657,7 @@ public class StateManager : MonoBehaviour
                 break;
             
             // Questioning
-            case "So how the hell did you get weapons in here" or "So how exactly did you get weapons in here": 
+            case "So how exactly did you get weapons in here?": 
                 // Dialogue
                 dialogue = "I have my ways ;)";
         
