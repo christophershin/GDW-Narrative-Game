@@ -541,7 +541,16 @@ public class StateManager : MonoBehaviour
                 // Options
                 option1 = "Good night"; //
                 option2 = "So how exactly did you get weapons in here?"; //
-                option3 = "I'm going to tell the guards about the dream";
+
+                if (guardSupport)
+                {
+                    option3 = "I'm going to tell the guards about the dream";
+                }
+                else
+                {
+                    option3 = "";
+                }
+                
                 
                 break;
             case "Pick the gun":
@@ -557,7 +566,14 @@ public class StateManager : MonoBehaviour
                 // Options
                 option1 = "Alright, thanks man."; //
                 option2 = "So how exactly did you get weapons in here?"; //
-                option3 = "I'm going to tell the guards about the dream";
+                if (guardSupport)
+                {
+                    option3 = "I'm going to tell the guards about the dream";
+                }
+                else
+                {
+                    option3 = "";
+                }
                 
                 break;
             
@@ -641,7 +657,14 @@ public class StateManager : MonoBehaviour
                 // Options
                 option1 = "Good night"; //
                 option2 = "So how exactly did you get weapons in here?"; //
-                option3 = "I'm going to tell the guards about the dream";
+                if (guardSupport)
+                {
+                    option3 = "I'm going to tell the guards about the dream";
+                }
+                else
+                {
+                    option3 = "";
+                }
                 
                 break;
             

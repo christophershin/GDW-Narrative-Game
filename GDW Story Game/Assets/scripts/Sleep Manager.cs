@@ -183,6 +183,7 @@ public class SleepManager : MonoBehaviour
                 }
                 else
                 {
+                    anim.SetBool("Hit", true);
                     isEnd = "hit";
                     ending.text = "You died!";
                     endReason.text = "The guards didn't come because they thought you were hallucinating. Maybe you shouldn't have talked about your dream.";
