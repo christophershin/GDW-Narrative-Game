@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SleepManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class SleepManager : MonoBehaviour
     private DialogueManager dialogueManager;
 
     public string dialogue, option1, option2, option3;
+
+    public GameObject dagger, mask;
     
     
     // Killer
@@ -19,6 +22,8 @@ public class SleepManager : MonoBehaviour
     // Ending
     public GameObject endScreen;
     public TextMeshProUGUI ending, endReason;
+
+    public GameObject darkScreen;
     
     // Ending Stuff
     private string isEnd = "none";
@@ -38,7 +43,14 @@ public class SleepManager : MonoBehaviour
         {
             guardSupport = false;
         }
-        
+
+        StartCoroutine(BlackFade());
+    }
+
+    private IEnumerator BlackFade()
+    {
+        yield return new WaitForSeconds(2f);
+        darkScreen.SetActive(false);
         SlasherEvent("");
     }
 
@@ -150,24 +162,28 @@ public class SleepManager : MonoBehaviour
                 break;
             case "*stab the killer*":
                 
+                dagger.SetActive(true);
+                
                 // Dialogue
                 dialogue = "Ow... don't think... this...";
         
                 // Options
                 option1 = "GUARDS HELP!!!";//
                 option2 = "Stop man, you don't have to do this...";//
-                option2 = "*stab again*";//
+                option3 = "*stab again*";//
                 break;
             case "GUARDS HELP!!!":
                 dialogueManager.DeactivateNarration(false);
 
                 if (guardSupport)
                 {
+                    isEnd = "kill";
                     ending.text = "You lived!";
                     endReason.text = "The guards came in time, detaining the injured killer, yet for some reason, Garry was missing since that day.";
                 }
                 else
                 {
+                    isEnd = "hit";
                     ending.text = "You died!";
                     endReason.text = "The guards didn't come because they thought you were hallucinating. Maybe you shouldn't have talked about your dream.";
                 }
@@ -184,6 +200,7 @@ public class SleepManager : MonoBehaviour
                 break;
             case "*stab again*":
                 dialogueManager.DeactivateNarration(false);
+                isEnd = "kill";
 
                 ending.text = "You lived!";
                 endReason.text = "You received a life sentence for taking someone's life. Your defense wasn't accepted for the sole reason of having a dagger in prison illegally.";
@@ -201,6 +218,8 @@ public class SleepManager : MonoBehaviour
                 option3 = "";//
                 break;
             case "What's going on?":
+                mask.SetActive(false);
+                
                 // Dialogue
                 dialogue = "......yo";
         
@@ -295,6 +314,7 @@ public class SleepManager : MonoBehaviour
                 
                 break;
             case "Please don't go":
+                mask.SetActive(true);
                 dialogueManager.DeactivateNarration(false);
                 anim.SetBool("Hit", true);
                 isEnd = "hit";
@@ -322,6 +342,11 @@ public class SleepManager : MonoBehaviour
                 break;
         }
         
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene("First Curscene");
     }
     
     private void StartDialogue()
